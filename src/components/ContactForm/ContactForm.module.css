@@ -1,0 +1,48 @@
+.form {
+  width: 350px;
+  border: 2px solid black;
+  padding: 15px;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: rgba(0, 104, 115, 0.1);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.fieldInput {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 4px;
+}
+
+.error {
+  color: red;
+}
+
+.divName {
+  display: flex;
+  flex-direction: column;
+}
+
+.divNumber {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldBtn {
+  height: 40px;
+  margin: auto 0;
+  background-color: #dcdcdc;
+  cursor: pointer;
+  border-radius: 13px;
+  transition: 0.35s;
+}
+
+.fieldBtn:is(:hover, :focus) {
+  background-color: rgba(0, 104, 115, 0.5);
+}
