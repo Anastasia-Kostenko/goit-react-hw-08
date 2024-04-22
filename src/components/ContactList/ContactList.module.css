@@ -1,16 +1,35 @@
-.contactList {
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center;
-  margin-top: 48px;
 }
 
-.contactListItem {
+.listItem p {
+  margin: 0;
+}
+
+.listItem {
   display: flex;
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  background-color: #9be4ff80;
-  text-align: left;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.delete {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }

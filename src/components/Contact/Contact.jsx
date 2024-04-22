@@ -1,31 +1,23 @@
 import { FaPhone } from "react-icons/fa6";
-import { IoIosContact } from "react-icons/io";
-import css from "./Contact.module.css";
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+import { IoPersonSharp } from "react-icons/io5";
+import css from "../ContactList/ContactList.module.css";
 
-const Contact = ({ contactName, contactNumber, contactId }) => {
-  const dispatch = useDispatch();
+export const Contact = ({ item, onDelete }) => {
   return (
-    <>
-      <div className={css.contactWrapper}>
-        <div className={css.contactInfo}>
-          <IoIosContact className={css.contactIcon} />
-          <p>{contactName}</p>
-        </div>
-        <div className={css.contactInfo}>
-          <FaPhone />
-          <span>{contactNumber}</span>
-        </div>
+    <li key={item.id} className={css.listItem}>
+      <div className={css.wrapper}>
+        <p className={css.text}>
+          <IoPersonSharp className={css.icon} />
+          {item.name}
+        </p>
+        <p className={css.text}>
+          <FaPhone className={css.icon} />
+          {item.number}
+        </p>
       </div>
-      <button
-        className={css.deleteBtn}
-        onClick={() => dispatch(deleteContact(contactId))}
-      >
+      <button className={css.delete} onClick={() => onDelete(item.id)}>
         Delete
       </button>
-    </>
+    </li>
   );
 };
-
-export default Contact;
