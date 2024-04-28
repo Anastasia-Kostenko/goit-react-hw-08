@@ -13,7 +13,7 @@ import { apiRefreshUser } from "./redux/auth/operations";
 const Home = lazy(() => import("./pages/Home/Home"));
 const Registration = lazy(() => import("./pages/Registration/Registration"));
 const Login = lazy(() => import("./pages/Login/Login"));
-const Contacts = lazy(() => import("./pages/Contacts/ContactsPage"));
+const Contacts = lazy(() => import("./pages/Contacts/Contacts"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 Modal.setAppElement("#root");
