@@ -1,18 +1,23 @@
-.wrapper {
-  margin-bottom: 20px;
+.searchBox {
+  max-width: 380px;
+  min-width: 310px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  gap: 12px;
+  font-size: 18px;
+  color: var(--accent-color);
+  text-align: center;
 }
 
-.label {
-  margin-bottom: 10px;
+.searchInput {
+  padding: 8px;
+  padding-left: 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 2px solid var(--second-color);
+  background-color: var(--primary-color);
 }
 
-.input {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
+::placeholder {
+  color: rgba(14, 14, 14, 0.3);
 }

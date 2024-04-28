@@ -1,24 +1,28 @@
-.wrapper {
+.userMenu {
   display: flex;
+  gap: 8px;
   align-items: center;
-  gap: 12px;
+  flex-direction: column;
 }
 
-.username {
-  font-weight: 700;
-  margin: 0 auto;
+.welcome {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--accent-color);
+  text-shadow: 2px 2px 4px rgba(7, 5, 3, 0.3);
+  text-align: center;
 }
 
-.button {
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 0 auto;
-  background-color: rgb(220, 233, 243);
+.logoutBtn {
+  font-size: 14px;
+  padding: 4px 8px;
+  color: var(--second-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  transition: all 0.3s;
 }
 
-.button:hover {
-  background-color: rgb(154, 197, 231);
+.logoutBtn:hover {
+  border: 1px solid var(--primary-color);
 }

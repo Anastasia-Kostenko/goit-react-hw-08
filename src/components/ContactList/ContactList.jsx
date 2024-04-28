@@ -1,27 +1,50 @@
-import css from "./ContactList.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Contact } from "../Contact/Contact";
-import { deleteContact } from "../../redux/operations";
-import { selectFilter, selectItems } from "../../redux/selectors";
+import { useEffect } from "react";
+import { FcContacts } from "react-icons/fc";
 
-export const ContactList = () => {
+import css from "./ContactList.module.css";
+import {
+  selectFilteredContacts,
+  selectPhonebookIsError,
+  selectPhonebookIsLoading,
+} from "../../redux/contacts/selectors";
+import { apiGetUserContacts } from "../../redux/contacts/operations";
+import Contact from "../Contact/Contact";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
+
+const ContactList = () => {
   const dispatch = useDispatch();
-  const items = useSelector(selectItems);
-  const filterValue = useSelector(selectFilter);
+  const isError = useSelector(selectPhonebookIsError);
+  const isLoading = useSelector(selectPhonebookIsLoading);
+  const contacts = useSelector(selectFilteredContacts);
 
-  const filteredItems = items.filter((item) =>
-    item.name.toLowerCase().includes(filterValue.toLowerCase())
-  );
-
-  const deleteUsers = (id) => {
-    dispatch(deleteContact(id));
-  };
+  useEffect(() => {
+    dispatch(apiGetUserContacts());
+  }, [dispatch]);
 
   return (
-    <ul className={css.list}>
-      {filteredItems.map((item) => (
-        <Contact key={item.id} item={item} onDelete={deleteUsers} />
-      ))}
-    </ul>
+    <div>
+      {isError && <ErrorMessage />}
+      {isLoading && <Loader />}
+      {contacts === null || contacts.length === 0 ? (
+        <p className={css.noContactsMess}>
+          There is no list.
+          <FcContacts size={24} /> Add more contacts.
+        </p>
+      ) : (
+        <ul className={css.contactList}>
+          {contacts.map((contact) => {
+            return (
+              <li className={css.contactItem} key={contact.id}>
+                <Contact {...contact} />
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
   );
 };
+
+export default ContactList;

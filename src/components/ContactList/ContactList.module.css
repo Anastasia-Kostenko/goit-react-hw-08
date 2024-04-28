@@ -1,35 +1,38 @@
-.list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.contactList {
+  font-size: 18px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  max-width: 380px;
+  min-width: 320px;
+  height: max-content;
 }
 
-.listItem p {
-  margin: 0;
+@media only screen and (min-width: 386px) {
+  .contactList {
+    min-width: auto;
+    max-width: 100%;
+    width: 380px;
+  }
 }
 
-.listItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid black;
-  border-radius: 4px;
-  padding: 4px 8px;
+@media only screen and (max-width: 462px) {
+  .contactList {
+    max-width: 380px;
+    width: 100%;
+  }
 }
 
-.icon {
-  margin-right: 5px;
+.contactItem {
+  border-radius: 8px;
+  border: 2px solid var(--primary-color);
+  padding: 16px;
+  max-width: 380px;
+  min-width: 320px;
 }
 
-.delete {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #f44336;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+.noContactsMess {
+  text-align: center;
+  font-size: 18px;
 }

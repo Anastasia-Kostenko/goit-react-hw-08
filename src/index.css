@@ -1,24 +1,52 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: black;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 15px;
+  font-family: sans-serif;
+  color: var(--second-color);
+  background-color: var(--primary-color);
+
+  --primary-color: #dbe7e8;
+  --second-color: #006873;
+  --accent-color: #6acad5;
 }
-* {
-  box-sizing: border-box;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-#root {
-  font-family: "Roboto", sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-h1 {
-  margin-bottom: 10px;
+a {
+  text-decoration: none;
+  color: currentColor;
+  font-size: 28px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  display: block;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--accent-color);
 }

@@ -1,70 +1,92 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useId } from "react";
-import * as Yup from "yup";
-import css from "./ContactForm.module.css";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
+import * as Yup from "yup";
 import { nanoid } from "@reduxjs/toolkit";
-import { addContact } from "../../redux/operations";
+import { toast } from "react-hot-toast";
 
-const userSchema = Yup.object().shape({
+import css from "./ContactForm.module.css";
+import { apiAddUserContact } from "../../redux/contacts/operations";
+
+const ContactsBoxSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+    .min(3, "Too short!")
+    .max(50, "Too long!")
+    .required("Required!"),
   number: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+    // .matches(/^\d{3}-\d{2}-\d{2}$/, {
+    //   message: 'Invalid number',
+    //   excludeEmptyString: false,
+    // })
+    .min(3, "Too short!")
+    .max(50, "Too long!")
+    .required("Required!"),
 });
 
-export const ContactForm = () => {
+const initialValues = {
+  name: "",
+  number: "",
+};
+
+const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const nameId = useId();
-  const numberId = useId();
+  const onAddContacts = (contactData) => {
+    const contactFinalData = {
+      ...contactData,
+      id: nanoid(),
+    };
+    dispatch(apiAddUserContact(contactFinalData));
+  };
+
+  const handleSubmit = (values, actions) => {
+    onAddContacts(values);
+    toast.success("Contact was added successfully");
+    actions.resetForm();
+  };
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        number: "",
-      }}
-      validationSchema={userSchema}
-      onSubmit={(values, actions) => {
-        const contacts = {
-          id: nanoid(),
-          name: values.name,
-          number: values.number,
-        };
-        dispatch(addContact(contacts));
-
-        actions.resetForm();
-      }}
+      validationSchema={ContactsBoxSchema}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
     >
-      <Form className={css.form} autoComplete="off">
-        <div className={css.formGroup}>
-          <label className={css.label} htmlFor={nameId}>
-            Name:
-          </label>
-          <Field className={css.input} type="text" name="name" id={nameId} />
-          <ErrorMessage className={css.error} name="name" component="span" />
-        </div>
-        <div className={css.formGroup}>
-          <label className={css.label} htmlFor={numberId}>
-            Number:
-          </label>
+      <Form className={css.contactForm}>
+        <label className={css.labelForm}>
+          <span className={css.labelText}>Name</span>
           <Field
-            className={css.input}
+            className={css.formField}
+            placeholder="Anna Rychkova"
+            type="text"
+            name="name"
+          />
+          <ErrorMessage
+            className={css.errorMessage}
+            name="name"
+            component="span"
+          />
+        </label>
+
+        <label className={css.labelForm}>
+          <span className={css.labelText}>Number</span>
+          <Field
+            className={css.formField}
+            placeholder="097-123-45-67"
             type="text"
             name="number"
-            id={numberId}
           />
-          <ErrorMessage className={css.error} name="number" component="span" />
-        </div>
-        <button className={css.button} type="submit">
-          Add User
+          <ErrorMessage
+            className={css.errorMessage}
+            name="number"
+            component="span"
+          />
+        </label>
+
+        <button className={css.formButton} type="submit">
+          Add contact
         </button>
       </Form>
     </Formik>
   );
 };
+
+export default ContactForm;

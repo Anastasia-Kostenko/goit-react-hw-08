@@ -1,24 +1,27 @@
-import { ContactForm } from "../../components/ContactForm/ContactForm";
-import { ContactList } from "../../components/ContactList/ContactList";
-import { SearchBox } from "../../components/SearchBox/SearchBox";
-import { fetchContact } from "../../redux/operations";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import css from "./ContactSPage.module.css";
+import { Helmet } from "react-helmet-async";
 
-const ContactsPage = () => {
-  const dispatch = useDispatch();
+import css from "./Contacts.module.css";
 
-  useEffect(() => {
-    dispatch(fetchContact());
-  }, [dispatch]);
+import ContactList from "../../components/ContactList/ContactList";
+import ContactForm from "../../components/ContactForm/ContactForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
+
+const Contacts = () => {
   return (
-    <div className={css.wrapper}>
-      <h1 className={css.text}>Phone Book</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList />
+    <div className={css.container}>
+      <Helmet>
+        <title>Your phonebook</title>
+      </Helmet>
+      <h1 className={css.title}>Your phonebook</h1>
+      <div className={css.infoCont}>
+        <div className={css.functionalCont}>
+          <ContactForm />
+          <SearchBox />
+        </div>
+        <ContactList />
+      </div>
     </div>
   );
 };
-export default ContactsPage;
+
+export default Contacts;
