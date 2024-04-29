@@ -1,22 +1,19 @@
-import { MagnifyingGlass } from "react-loader-spinner";
+import { TailSpin } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <MagnifyingGlass
-      visible={true}
-      height="80"
-      width="80"
-      ariaLabel="magnifying-glass-loading"
-      wrapperStyle={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "auto",
-      }}
-      wrapperClass="magnifying-glass-wrapper"
-      glassColor="#f9e3cc"
-      color="#ef5c0d"
-    />
+    <div>
+      <TailSpin
+        visible={true}
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
   );
 };
 

@@ -97,7 +97,7 @@ const RegisterForm = () => {
             title="Click to register user"
             aria-label="Register button"
           >
-            SIgn Up <IoPersonAddSharp size={18} color="#261605" />
+            Sign Up <IoPersonAddSharp size={18} color="#261605" />
           </button>
         </Form>
       </Formik>
